@@ -22,7 +22,7 @@ while read LINE; do                                                     # For ea
 done </tmp/devices
 
 #Check if there is any content to write to file
-if cat /etc/fstab_uuid 
+if cat /etc/fstab_uuid 2>&1>/dev/null
 	then
 	#if 1st switch is -y will not ask for confirmation
 	if  [ "$1"!="-y" ] 
