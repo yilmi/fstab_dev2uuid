@@ -18,7 +18,7 @@ sed -n 's|^/dev/\([sh]d[a-z][0-9]\).*|\1|p' </etc/fstab >/tmp/devices
 #Parse /tmp/devices and look for /dev/disk/by-uuid symlinks to map uuid to block device 
 while read LINE; do                                                     # For each line in /tmp/devices
         UUID=`ls -l /dev/disk/by-uuid | grep "$LINE" | sed -n 's/^.* \([^ ]*\) -> .*$/\1/p'`	# Sets the UUID name for that device
-        sed -i "s|^/dev/${LINE}|UUID=${UUID}|" /etc/fstab_uuid               			# output UUID based fstab file
+        sed -i "s|^/dev/${LINE}|UUID=${UUID}|" /etc/fstab > /etc/fstab_uuid   			# output UUID based fstab file
 done </tmp/devices
 
 #Check if there is any content to write to file
